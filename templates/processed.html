@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Processed Images</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .image-card img {
+      max-height: 200px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container mt-5 p-4 bg-white rounded shadow-sm">
+    <h2 class="text-center text-success mb-4">Processed Images</h2>
+    
+    <div class="row">
+      {% for file in filenames %}
+        <div class="col-md-4 mb-4">
+          <div class="card image-card shadow-sm">
+            <img src="{{ url_for('processed_file', filename=file) }}" class="card-img-top p-2 bg-light" alt="Image">
+            <div class="card-body text-center">
+              <a href="{{ url_for('processed_file', filename=file) }}" class="btn btn-success btn-sm" download>
+                ⬇️ Download
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+     <div class="text-center mt-3">
+      <a href="/download_all" class="btn btn-dark">📦 Download All as ZIP</a>
+     </div>
+
+    <div class="text-center mt-4">
+      <a href="/" class="btn btn-outline-primary">🔁 Process More Images</a>
+    </div>
+  </div>
+</body>
+</html>
+
